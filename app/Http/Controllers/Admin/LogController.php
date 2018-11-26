@@ -16,6 +16,9 @@ class LogController extends Controller
     }
 
     public function index() {
+        // block other user
+        abort_if(Auth::user()->user_type == 2, 404);
+
     	$logs = Log::orderBy('created_at', 'desc')->get();
     	$logArr = [];
     	$x = 0;
@@ -36,6 +39,9 @@ class LogController extends Controller
     }
 
     public function destroy($id) {
+        // block other user
+        abort_if(Auth::user()->user_type == 2, 404);
+        
         $log = Log::find($id);
         $log->delete();
 
