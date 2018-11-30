@@ -164,6 +164,7 @@ class AnnouncementCrudController extends CrudController
         $announcement = Announcement::find($id);
         if (!$announcement->image == '' || !$announcement->image == null) {
             $oldImage = $announcement->image;
+            File::delete(public_path('uploads/'. $oldImage)); // delete old image
         }
         $log = New Log;
         $log->user_id = Auth::user()->id;
@@ -177,7 +178,7 @@ class AnnouncementCrudController extends CrudController
         // get entry ID from Request (makes sure its the last ID for nested resources)
         $id = $this->crud->getCurrentEntryId() ?? $id;
 
-        File::delete(public_path('uploads/'. $oldImage)); // delete old image
+        
 
         return $this->crud->delete($id);
     }

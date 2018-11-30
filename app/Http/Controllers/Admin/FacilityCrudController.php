@@ -158,6 +158,7 @@ class FacilityCrudController extends CrudController
         $facility = Facility::find($id);
         if (!$facility->image == '' || !$facility->image == null) {
             $oldImage = $facility->image;
+            File::delete(public_path('uploads/'. $oldImage)); // delete old image
         }
         $log = New Log;
         $log->user_id = Auth::user()->id;
@@ -170,8 +171,6 @@ class FacilityCrudController extends CrudController
 
         // get entry ID from Request (makes sure its the last ID for nested resources)
         $id = $this->crud->getCurrentEntryId() ?? $id;
-
-        File::delete(public_path('uploads/'. $oldImage)); // delete old image
 
         return $this->crud->delete($id);
     }

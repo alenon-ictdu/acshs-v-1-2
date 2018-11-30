@@ -67,6 +67,9 @@
               <a class="nav-link js-scroll-trigger" href="#about">About</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#albums">Gallery</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#facilities">Facilities</a>
             </li>
             <li class="nav-item">
@@ -78,12 +81,6 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
             </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="{{ route('student.login') }}">StudentLogin</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="{{ route('teacher.login') }}">TeacherLogin</a>
-            </li> -->
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                 Login
@@ -292,9 +289,80 @@
 
     @endif
 
+    <!-- Album Grid -->
+    @if(!count($albums) == 0)
+    <section class="bg-light" id="albums">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading text-uppercase" style="margin-bottom: 50px;">Gallery</h2>
+          </div>
+        </div>
+
+        <div class="row">
+
+          {{-- for 1 record --}}
+          @if(count($albums) == 1)
+            @foreach($albums as $row)
+            <div class="offset-md-4 col-md-4">
+              <div class="card" style="margin-bottom: 20px;">
+                <img class="card-img-top" src="{{ asset('img/album/'. $row->thumbnail) }}" alt="Card image">
+                <div class="card-body">
+                  <h4 class="card-title">{{ $row->name }}</h4>
+                  <p class="card-text">{{ $row->description }}</p>
+                  <a href="{{ route('album.images', $row->id) }}" class="btn btn-primary">View</a>
+                </div>
+              </div>
+            </div>
+            @endforeach
+          @endif
+
+          {{-- for 2 records --}}
+          @if(count($albums) == 2)
+            <?php $albumCounter = 1; ?>
+            @foreach($albums as $row)
+            <div class="@if($albumCounter == 1) offset-md-2 @endif col-md-4">
+              <div class="card" style="margin-bottom: 20px;">
+                <img class="card-img-top" src="{{ asset('img/album/'. $row->thumbnail) }}" alt="Card image">
+                <div class="card-body">
+                  <h4 class="card-title">{{ $row->name }}</h4>
+                  <p class="card-text">{{ $row->description }}</p>
+                  <a href="{{ route('album.images', $row->id) }}" class="btn btn-primary">View</a>
+                </div>
+              </div>
+            </div>
+            <?php $albumCounter++; ?>
+            @endforeach
+          @endif
+
+          {{-- for 3+ records --}}
+          @if(count($albums) >= 3)
+            @foreach($albums as $row)
+            <div class="col-md-4">
+              <div class="card" style="margin-bottom: 20px;">
+                <img class="card-img-top" src="{{ asset('img/album/'. $row->thumbnail) }}" alt="Card image">
+                <div class="card-body">
+                  <h4 class="card-title">{{ $row->name }}</h4>
+                  <p class="card-text">{{ $row->description }}</p>
+                  <a href="{{ route('album.images', $row->id) }}" class="btn btn-primary">View</a>
+                </div>
+              </div>
+            </div>
+            @endforeach
+          @endif
+
+          @if($albumSeeMore)
+            <a style="margin-top: 30px;" href="{{ route('albums') }}" class="mx-auto btn btn-primary">See more</a>
+          @endif
+
+        </div>
+      </div>
+    </section>
+    @endif
+
     <!-- Facilities Grid -->
     @if(!$facilities->count() == 0)
-    <section class="bg-light" id="facilities">
+    <section id="facilities">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
@@ -375,7 +443,7 @@
 
     <!-- Announcements -->
     @if(!$announcements->count() == 0)
-    <section id="news">
+    <section id="news" class="bg-light">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
@@ -390,7 +458,7 @@
               @if(($news->id % 2 == 0))
 
                 <li>
-                   <img class="rounded-circle img-fluid newsimg timeline-image" width="100%" height="100%" src="uploads/{{$news->image}}" alt="">
+                   <img class="rounded-circle img-fluid newsimg timeline-image" width="100%" height="100%" src="{{ asset('uploads/'.$news->image) }}" alt="">
                     <div class="timeline-panel">
                       <a data-toggle="modal" href="#newsModal{{$news->id}}" >
                       <div class="timeline-heading">
@@ -438,7 +506,7 @@
 
     <!-- Administration -->
     @if(!$administrations->count() == 0)
-    <section class="bg-light" id="admin">
+    <section id="admin">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">

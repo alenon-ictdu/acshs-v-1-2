@@ -44,8 +44,8 @@
             <div class="alert alert-info" role="alert">
               <h4 class="alert-heading">Example:</h4>
               <hr>
-              <p><strong>Name: </strong>SPCF</p>
-              <p class="mb-0"><strong>Abbreaviation: </strong>Systems Plus College Foundation</p>
+              <p><strong>Name: </strong>Systems Plus College Foundation</p>
+              <p class="mb-0"><strong>Abbreviation: </strong>SPCF</p>
             </div>
           </div>
 

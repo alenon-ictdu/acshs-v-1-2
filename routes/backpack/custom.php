@@ -88,6 +88,15 @@ Route::group([
 	Route::get('logs', 'LogController@index')->name('log.index');
 	Route::delete('logs/{id}/delete', 'LogController@destroy')->name('log.destroy');
 
+	// album routes
+	Route::get('albums', 'AlbumController@index')->name('album.index');
+	Route::get('albums/create', 'AlbumController@create')->name('album.create');
+	Route::post('albums/create', 'AlbumController@store')->name('album.store');
+	Route::get('albums/{id}', 'AlbumController@show')->name('album.show');
+	Route::get('albums/{id}/edit', 'AlbumController@edit')->name('album.edit');
+	Route::match(['PUT', 'PATCH'], 'albums/{id}/edit', 'AlbumController@update')->name('album.update');
+	Route::delete('albums/{id}/delete', 'AlbumController@destroy')->name('album.destroy');
+
 	// maintenance route
 	// Route::get('oops', 'MaintenaceController@oops')->name('oops');
 

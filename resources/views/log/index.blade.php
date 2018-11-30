@@ -38,6 +38,7 @@
           <table id="crudTable" class="table table-striped table-hover display responsive nowrap" cellspacing="0">
             <thead>
               <tr>
+                <th style="display:none;">ID</th>
                 <th>Description</th>
                 <th>Date</th>
                 <th>Actions</th>
@@ -46,6 +47,7 @@
             <tbody>
               @foreach($logs as $row)
               <tr>
+                <td style="display:none;">{{ $row->id }}</td>
                 <td>{{ $row->description }}</td>
                 <td>{{ $row->created_at }}</td>
                 <td><button type="submit" class="btn btn-xs btn-default" form="deleteLog"><i class="fa fa-trash"></i> Delete</button>
@@ -82,7 +84,16 @@
   <script>
     // datatable init
     $(document).ready( function () {
-        $('#crudTable').DataTable();
+        $('#crudTable').DataTable({
+          "order": [[ 0, "desc" ]],
+          "columnDefs": [
+              {
+                  "targets": [ 0 ],
+                  "visible": false,
+                  "searchable": false
+              }
+          ]
+        });
     } );
 
     // confirm delete

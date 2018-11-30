@@ -12,9 +12,9 @@
               <li><a href="{{ route('schoolname.index') }}"><i class="fa fa-file-o"></i> <span>School Name</span></a></li>
               <li><a href="{{ route('carousel.index') }}"><i class="fa fa-file-o"></i> <span>Carousel</span></a></li>
               <li><a href="{{ route('about.index') }}"><i class="fa fa-file-o"></i> <span>About</span></a></li>
-              <li><a href="{{backpack_url('page_content') }}"><i class="fa fa-file-o"></i> <span>Page Content</span></a></li>
               <li><a href="{{backpack_url('facility') }}"><i class="fa fa-file-o"></i> <span>Facilities</span></a></li>
               <li><a href="{{backpack_url('administration') }}"><i class="fa fa-file-o"></i> <span>Administration</span></a></li>
+              <li><a href="{{ route('album.index') }}"><i class="fa fa-file-o"></i> <span>Album</span></a></li>
 
             </ul>
           </li>
@@ -35,6 +35,7 @@
               <li><a href="{{ route('about.index') }}"><i class="fa fa-file-o"></i> <span>About</span></a></li>
               <li><a href="{{backpack_url('facility') }}"><i class="fa fa-file-o"></i> <span>Facilities</span></a></li>
               <li><a href="{{backpack_url('administration') }}"><i class="fa fa-file-o"></i> <span>Administration</span></a></li>
+              <li><a href="{{ route('album.index') }}"><i class="fa fa-file-o"></i> <span>Album</span></a></li>
 
             </ul>
           </li>

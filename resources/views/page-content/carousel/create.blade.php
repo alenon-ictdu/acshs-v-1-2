@@ -40,6 +40,12 @@
         </div>
         <div class="box-body row display-flex-wrap" style="display: flex; flex-wrap: wrap;">
 
+          <div class="col-xs-12">
+            <div class="alert alert-info" role="alert">
+              <p><strong>Recommended Image Resolution: </strong>1200 x 700 pixels</p>
+            </div>
+          </div>
+
           <div class="form-group col-xs-12">
             <label>Title</label>
             <input type="text" name="title" class="form-control">

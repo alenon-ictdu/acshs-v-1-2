@@ -16,6 +16,8 @@ Route::get('/login', function() {
 });
 
 Route::get('/facilities','PageController@facilityPage')->name('facilities');
+Route::get('/albums','PageController@albumPage')->name('albums');
+Route::get('/albums/{id}/images','PageController@albumImagesPage')->name('album.images');
 Route::get('/announcements','PageController@announcementPage')->name('announcements');
 Route::get('/administrations','PageController@administrationPage')->name('administrations');
 Route::get('/','HomeController@landingpage')->name('landing');

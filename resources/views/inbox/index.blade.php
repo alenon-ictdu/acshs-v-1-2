@@ -38,6 +38,7 @@
           <table id="crudTable" class="table table-striped table-hover display responsive" cellspacing="0">
             <thead>
               <tr>
+                <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Message</th>
@@ -48,6 +49,7 @@
             <tbody>
               @foreach($messages as $row)
               <tr>
+                <td>{{ $row->id }}</td>
                 <td>{{ $row->name }}</td>
                 <td>{{ $row->email }}</td>
                 <td>{{ strlen($row->message) >= 4 ? substr($row->message, 0, 20). '...' : $row->message }}</td>
@@ -111,9 +113,17 @@
   <script>
     // datatable init
     $(document).ready( function () {
-        $('#crudTable').DataTable();
+        $('#crudTable').DataTable({
+          "order": [[ 0, "desc" ]],
+          "columnDefs": [
+              {
+                  "targets": [ 0 ],
+                  "visible": false,
+                  "searchable": false
+              }
+          ]
+        });
     } );
-
     // confirm delete
     function ConfirmDelete()
     {
